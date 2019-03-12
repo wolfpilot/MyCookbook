@@ -10,7 +10,7 @@ const RecipesScreen = props => {
 
   return (
     <View style={CommonStyles.container}>
-      <Text style={CommonStyles.heading}>Recipes</Text>
+      <Text style={CommonStyles.pageHeading}>Recipes</Text>
       <TouchableOpacity onPress={() => navigate('Home')}>
         <Text style={CommonStyles.button}>Home</Text>
       </TouchableOpacity>

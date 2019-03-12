@@ -7,13 +7,13 @@ import { COLOURS } from "./variables";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
+    backgroundColor: COLOURS.beige
   },
-  heading: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
+  pageHeading: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginVertical: 10
   },
   button: {
     overflow: 'hidden',
@@ -22,9 +22,7 @@ export default StyleSheet.create({
     backgroundColor: COLOURS.black,
     borderRadius: 5,
     color: COLOURS.white,
+    textAlign: 'center',
     fontSize: 24,
   },
-  card: {
-
-  }
 });

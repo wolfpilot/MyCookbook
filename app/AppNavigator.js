@@ -6,8 +6,8 @@ import HomeScreen from '../app/screens/home/HomeScreen';
 import RecipesScreen from '../app/screens/recipes/RecipesScreen';
 
 const MainNavigator = createStackNavigator({
-    Home: {screen: HomeScreen},
-    Recipes: {screen: RecipesScreen},
+  Home: {screen: HomeScreen},
+  Recipes: {screen: RecipesScreen},
 });
 
 const AppNavigator = createAppContainer(MainNavigator);

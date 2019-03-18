@@ -6,20 +6,22 @@ import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import RecipeList from "../../components/RecipeList/RecipeList";
 
 // Resources
-import data from './mock.json';
+import data from './data.js';
 import CommonStyles from '../../global/styles/common';
 
 const HomeScreen = props => {
-  const { navigate } = props.navigation;
+  const { navigation } = props;
 
   return (
     <ScrollView>
       <View style={CommonStyles.container}>
         <Text style={CommonStyles.pageHeading}>My Cookbook</Text>
 
-        <RecipeList recipes={data.promoted.recipes} />
+        <RecipeList
+          navigation={navigation}
+          recipes={data.promoted.recipes} />
 
-        <TouchableOpacity onPress={() => navigate('Recipes')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Recipes')}>
           <Text style={CommonStyles.button}>Recipes</Text>
         </TouchableOpacity>
       </View>

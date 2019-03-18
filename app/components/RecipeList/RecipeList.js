@@ -6,7 +6,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
 const RecipeList = props => {
-  const { recipes } = props;
+  const { navigation, recipes } = props;
 
   return (
     <View style={styles.list}>
@@ -14,7 +14,7 @@ const RecipeList = props => {
 
       <FlatList
         data={recipes}
-        renderItem={item => <RecipeCard recipe={item} />}
+        renderItem={item => <RecipeCard navigation={navigation} recipe={item} />}
         keyExtractor={(item, index) => index.toString()}
       />
     </View>

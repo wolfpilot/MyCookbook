@@ -1,30 +1,35 @@
 // Libs
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import FullWidthImage from 'react-native-fullwidth-image'
+import FullWidthImage from 'react-native-fullwidth-image';
 
 // Utils
 import { COLOURS } from '../../global/styles/variables';
 
+const imgPlaceholderPath = '../../data/images/recipes/placeholder.jpg';
+
 const RecipeCard = props => {
-  const { title, description } = props.recipe.item;
+  const { id, title, tagline, image } = props.recipe.item;
+  const { navigate } = props.navigation;
+
+  const recipeImage = image ? image : require(imgPlaceholderPath);
 
   return (
     <View style={styles.recipe}>
       <View style={styles.content}>
         <View style={styles.imageWrapper}>
           <FullWidthImage
-            source={require('../../global/assets/images/placeholder-recipe.jpg')}
-            width={480}
-            height={272}
+            source={recipeImage}
+            width={900}
+            height={600}
             style={styles.image} />
         </View>
 
         <View style={styles.details}>
           {title && <Text style={styles.heading}>{title}</Text>}
-          {description && <Text style={styles.description}>{description}</Text>}
+          {tagline && <Text style={styles.tagline}>{tagline}</Text>}
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('Recipe', { id })}>
             <Text style={styles.cta}>VIEW RECIPE</Text>
           </TouchableOpacity>
         </View>
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     fontSize: 20
   },
-  description: {
+  tagline: {
     marginBottom: 20,
     color: '#6b6b6b',
     fontSize: 16

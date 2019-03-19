@@ -3,6 +3,9 @@ import React, { PureComponent } from 'react';
 import { ScrollView, StyleSheet, View, Text, FlatList } from 'react-native';
 import FullWidthImage from 'react-native-fullwidth-image';
 
+// Components
+import Checkbox from "../../components/Checkbox/Checkbox";
+
 // Assets
 import CommonStyles from '../../global/styles/common';
 
@@ -33,9 +36,23 @@ const renderInstructions = instructions => (
   </View>
 );
 
-const renderIngredient = ({ item }) => (
-  <Text style={styles.copy}>- {item}</Text>
-);
+const renderIngredient = ({ item }) => {
+  return (
+    <View style={styles.ingredient}>
+      <View style={styles.ingredientCheckbox}>
+        <Checkbox
+          id="1"
+          value={item}
+        />
+      </View>
+      <Text style={styles.ingredientText}>{item}</Text>
+    </View>
+  );
+
+  // return (
+  //   <Text style={styles.copy}>- {item}</Text>
+  // );
+}
 
 const renderIngredientList = ingredients => (
   <View style={styles.section}>
@@ -112,6 +129,17 @@ const styles = StyleSheet.create({
   copy: {
     fontSize: 18
   },
+  ingredient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15
+  },
+  ingredientCheckbox: {
+    marginRight: 10
+  },
+  ingredientText: {
+    fontSize: 16
+  }
 });
 
 export default RecipeScreen;

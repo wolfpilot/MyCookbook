@@ -1,11 +1,14 @@
 // Libs
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { NavigationScreenProps, NavigationScreenComponent } from "react-navigation";
 
 // Assets
 import CommonStyles from '../../global/styles/common';
 
-const RecipesScreen = props => {
+interface IProps extends NavigationScreenProps {}
+
+const RecipesScreen: NavigationScreenComponent<IProps> = props => {
   const { navigate } = props.navigation;
 
   return (

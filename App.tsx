@@ -8,7 +8,9 @@
  */
 
 // Libs
-import React, {Component} from 'react';
+// import React, {Component} from 'react';
+import React from 'react';
+import { Component } from 'react';
 
 // Components
 import AppNavigator from './app/AppNavigator';

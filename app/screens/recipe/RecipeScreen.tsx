@@ -1,6 +1,7 @@
 // Libs
 import React, { PureComponent } from 'react';
 import { ScrollView, StyleSheet, View, Text, FlatList } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
 import FullWidthImage from 'react-native-fullwidth-image';
 
 // Components
@@ -10,9 +11,31 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import CommonStyles from '../../global/styles/common';
 
 // Resources
-import recipes from '../../data/raw/recipes.js';
+import recipes from '../../data/raw/recipes';
 
-const renderNutrients = nutrients => {
+interface INutrients {
+  calories: number;
+  fat: string;
+  sugar: string;
+  carbs: string;
+  protein: string;
+  fiber: string;
+}
+
+interface IProps extends NavigationScreenProps {}
+
+interface IState {
+  data: {
+    image: number;
+    title: string;
+    description: string;
+    ingredients: string[];
+    instructions: string;
+    nutrients: INutrients;
+  }
+}
+
+const renderNutrients = (nutrients: INutrients) => {
   const { calories, fat, sugar, carbs, protein, fiber } = nutrients;
 
   return (
@@ -29,32 +52,25 @@ const renderNutrients = nutrients => {
   );
 };
 
-const renderInstructions = instructions => (
+const renderInstructions = (instructions: string) => (
   <View style={styles.section}>
     <Text style={styles.heading}>Instructions</Text>
     <Text style={styles.copy}>{instructions}</Text>
   </View>
 );
 
-const renderIngredient = ({ item }) => {
+const renderIngredient = ({ item }: {item: string}) => {
   return (
     <View style={styles.ingredient}>
       <View style={styles.ingredientCheckbox}>
-        <Checkbox
-          id="1"
-          value={item}
-        />
+        <Checkbox />
       </View>
       <Text style={styles.ingredientText}>{item}</Text>
     </View>
   );
+};
 
-  // return (
-  //   <Text style={styles.copy}>- {item}</Text>
-  // );
-}
-
-const renderIngredientList = ingredients => (
+const renderIngredientList = (ingredients: string[]) => (
   <View style={styles.section}>
     <Text style={styles.heading}>Ingredients</Text>
     <FlatList
@@ -65,36 +81,26 @@ const renderIngredientList = ingredients => (
   </View>
 );
 
-class RecipeScreen extends PureComponent {
-  state = {
-    data: null
-  };
-
-  componentDidMount() {
+class RecipeScreen extends PureComponent<IProps, IState> {
+  public componentDidMount() {
     const { navigation } = this.props;
     const id = navigation.getParam('id', null);
 
     if (!id) { return; }
 
-    const data = recipes.find(recipe => recipe.id === id);
+    const data: any = recipes.find(recipe => recipe.id === id);
 
     this.setState({ data });
   }
 
-  render() {
+  public render() {
     const { data } = this.state;
 
     return (
       <ScrollView>
         { data &&
           <>
-            {data.image &&
-            <FullWidthImage
-              source={data.image}
-              width={900}
-              height={600}
-              style={styles.image}/>
-            }
+            {data.image && <FullWidthImage source={data.image}/>}
 
             <View style={styles.container}>
               <View style={styles.intro}>

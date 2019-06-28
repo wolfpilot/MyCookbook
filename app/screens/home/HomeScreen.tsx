@@ -1,15 +1,18 @@
 // Libs
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { NavigationScreenProps, NavigationScreenComponent } from 'react-navigation';
 
 // Components
 import RecipeList from "../../components/RecipeList/RecipeList";
 
 // Resources
-import data from './data.js';
+import data from './data';
 import CommonStyles from '../../global/styles/common';
 
-const HomeScreen = props => {
+interface IProps extends NavigationScreenProps {}
+
+const HomeScreen: NavigationScreenComponent<IProps> = props => {
   const { navigation } = props;
 
   return (
